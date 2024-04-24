@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Form validation</title>
+    <style>
+        body{
+            font-size: 16px;
+            background: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h2{
+            text-align: center;
+            text-decoration: underline;
+        }
+        form{
+            width: 300px;
+            background: #fff;
+            padding: 15px 40px 40px;
+            border: 1px solid #ccc;
+            margin: 50px auto 0;
+            border-radius: 5px;
+        }
+        label i{
+            color: #999;
+            font-size: 80%;
+        }
+        input,select{
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+        .row{
+            padding-bottom: 10px;
+        }
+        .form-inline{
+            border: 1px solid #ccc;
+            padding: 8px 10px 4px;
+            border-radius: 2px;
+        }
+        .form-inline label,.form-inline input{
+            display: inline-block;
+            width: auto;
+            padding-right: 15px;
+        }
+        .error{
+            color: red;
+            font-size: 90%;
+        }
+        input[type="submit"]{
+            font-size: 110%;
+            font-weight: 100;
+            background: #006dcc;
+            border-color: #016BC1;
+            box-shadow: 0 3px 0 #0165b6;
+            color: #fff;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover{
+            background: #0165b6;
+        }
+    </style>
+    <script>
+        // Defining a function to display error message
+            //function_name(var1,var2)      we will pass variable value from validateForm function
+       function printError(elemld,hintMsg) {
+        document.getElementById(elemld).innerHTML=hintMsg;
+                // we will get message by element's Id name...and display message for error....element.innerHTML =  new html content....Change the inner HTML of an element ...here we have to change element as per error occur....
+       }
+       // Defining a function to validate form 
+       function validateForm(){     // declaring function
+        
+        // Retrieving the values of form elements
+        var name=document.contactForm.name.value;
+        var email=document.contactForm.email.value;
+        var mobile=document.contactForm.mobile.value;
+        var country=document.contactForm.country.value;
+        var gender=document.contactForm.gender.value;
+        var hobbies= [];
+        var checkboxes=document.getElementsByClassName("hobbies[]");
+        // we have multiple choice options...so we create an array variable....
+                    
+        // Populate hobbies array with selected values
+        for(var i=0; i < checkboxes.length; i++) {      // as per selected choices... loop will repeated...
+        if(checkboxes[i].checked){
+            hobbies.push(checkboxes[i].value);
+        }
+       }
+
+       	// Defining error variables with a default value
+       var nameErr=emailErr=mobileErr=countryErr=genderErr=true;
+
+           // Validate name
+       if(name==""){
+        printError("nameErr","Please enter your name");
+        }else{
+            var regex=/^[a-z,A-Z\s]+$/;      // we have to use this synax for taking input field..  (/^............$/) between this sign(regration) we can take choice of input. /s is for only character/string input..
+            if(regex.test(name)===false){
+                // .test is inbuilt function...for checking values...
+                printError("nameErr","Please enter a valid name");
+            }else{
+                printError("nameErr","");
+                nameErr=false;
+            }
+        }
+    // Validate email address
+        if(email==""){
+            printError("emailErr","Please enter your email address");
+            }else{
+                var regex=/^\S+@\S+\.\S+$/;     // S is used for (char and number)...
+                if(regex.test(email)===false){
+                    printError("emailErr","Please enter a valid email address");
+                }else{
+                    printError("emailErr","");
+                    emailErr=false;
+                }
+            }
+ 
+            // Validate mobile number
+        if(mobile == "") {
+            printError("mobileErr", "Please enter your mobile number");
+            } else {
+                var regex = /^[1-9]\d{9}$/; // for indian number use /^[7,8,9][1-9]\d{9}$/
+                if(regex.test(mobile) === false) {
+                    printError("mobileErr", "Please enter a valid 10 digit mobile number");
+                } else{
+                    printError("mobileErr", "");
+                    mobileErr = false;
+                }
+            }
+
+            // Validate country
+        if(country == "Select") {
+            printError("countryErr", "Please select your country");
+            } else {
+                printError("countryErr", "");
+                countryErr = false;
+            }
+
+            // validate gender..
+        if(gender == "") {
+            printError("genderErr", "Please select your gender");
+            } else {
+                printError("genderErr", "");
+                genderErr = false;
+            }
+
+                // Prevent the form from being submitted if there are any errors
+            if((nameErr || emailErr || mobileErr || countryErr || genderErr) == true) {
+                return false;
+             } else {
+                 var dataPreview = "You've entered the following details: \n" +
+                                   "Full Name: " + name + "\n" +
+                                   "Email Address: " + email + "\n" +
+                                   "Mobile Number: " + mobile + "\n" +
+                                   "Country: " + country + "\n" +
+                                   "Gender: " + gender + "\n";
+                 if(hobbies.length) {
+                     dataPreview += "Hobbies: " + hobbies.join(", ");
+                 }
+                 
+                 alert(dataPreview);
+             }
+         };
+    </script>
+    </head>
+    <body>
+        <form name="contactForm" onsubmit="return validateForm()">
+             <h2>Application Form</h2>
+             <div class="row">
+                 <label>Full Name</label>
+                 <input type="text" name="name">
+                 <div class="error" id="nameErr"></div>
+             </div>
+             <div class="row">
+                 <label>Email Address</label>
+                 <input type="text" name="email">
+                 <div class="error" id="emailErr"></div>
+             </div>
+             <div class="row">
+                 <label>Mobile Number</label>
+                 <input type="text" name="mobile" maxlength="10">
+                 <div class="error" id="mobileErr"></div>
+             </div>
+             <div class="row">
+                 <label>Country</label>
+                 <select name="country">
+                     <option>Select</option>
+                     <option>Australia</option>
+                     <option>India</option>
+                     <option>United States</option>
+                     <option>U.A.E.</option>
+                     <option>France</option>
+                     <option>Canada</option>
+                     <option>Bhutan</option>
+
+                 </select>
+                 <div class="error" id="countryErr"></div>
+             </div>
+             <div class="row">
+                 <label>Gender</label>
+                 <div class="form-inline">
+                     <label><input type="radio" name="gender" value="male"> Male</label>
+                     <label><input type="radio" name="gender" value="female"> Female</label>
+                     <!-- value is must for radio button and checkbox... else in database it will shown as on/ off value....  -->
+                 </div>
+                 <div class="error" id="genderErr"></div>
+             </div>
+             <div class="row">
+                 <label>Hobbies <i>(Optional)</i></label>
+                 <div class="form-inline">
+                     <label><input type="checkbox" name="hobbies[]" value="sports"> Sports</label>
+                     <label><input type="checkbox" name="hobbies[]" value="movies"> Movies</label>
+                     <label><input type="checkbox" name="hobbies[]" value="music"> Music</label>
+                     <label><input type="checkbox" name="hobbies[]" value="singing"> Singing</label>
+                     <label><input type="checkbox" name="hobbies[]" value="dancing"> Dancing</label>
+                     <label><input type="checkbox" name="hobbies[]" value="reading"> Reading</label>
+                     <label><input type="checkbox" name="hobbies[]" value="cooking"> Cooking</label>
+                 </div>
+             </div>
+             <div class="row">
+                 <input type="submit" value="Submit">
+             </div>
+    </form>
+    </body>
+</html>  
+
+    

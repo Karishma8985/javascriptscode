@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getSum(num1,num2){
+            var total=num1+num2;
+            return total;
+        }
+        
+        var a = parseInt(prompt("Enter no."));
+        var b = parseInt(prompt("Enter another no."));
+       
+        document.write("default value addition: "+getSum(6,20)+"<br>");
+
+        document.write("default value addition: "+getSum(-5,20)+"<br>");
+
+        document.write("value pass by user addition: "+getSum(a,b)+"<br>");
+
+
+    </script>
+</body>
+</html>

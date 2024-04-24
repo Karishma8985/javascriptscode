@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Select Elements by Tag Name</title>
+</head>
+<body>
+    <p>This is a paragraph of text.</p>
+    <div class="test">This is another paragraph of text.</div>
+    <p>This is one more paragraph of text.</p>
+    <hr>
+
+    <script>
+    // Selecting all paragraph elements
+    var matches = document.getElementsByTagName("p");
+        
+    // Printing the number of selected paragraphs
+    document.write("Number of selected elements: " + matches.length);
+     
+    // Highlighting each paragraph's background through loop
+// for(var elem in matches) {        // if you want to give same property to all tag together use for..in loop
+  //      matches[elem].style.background = "yellow";
+   // } 
+
+   // if you want to give different propertys to selected tag... , pass property by index value...
+   matches[0].style.background ="red";
+   matches[0].style.fontStyle ="italic";
+   matches[0].style.fontWeight ="bolder";
+   matches[0].style.fontSize ="40px";
+   matches[0].style.color ="wheat";
+   
+
+   matches[1].style.background ="purple";
+   matches[1].style.fontStyle ="italic";
+   matches[1].style.fontWeight ="bolder";
+   matches[1].style.fontSize ="40px";
+   matches[1].style.color ="white";
+
+
+    </script>
+</body>
+</html>

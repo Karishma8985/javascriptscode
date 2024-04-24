@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getBrowserInformation(){
+            var info="\nApp Name:"+navigator.appName;
+            info+="\nApp Version:"+navigator.appVersion;
+            info+="\nApp CodeName:"+navigator.appCodeName;
+            info+="\nApp User Agent:"+navigator.userAgent;
+            info+="\nPlatform:"+navigator.platform;
+
+            alert("Here're the information related to your browser:"+info);
+        }
+    </script>
+    <button type="button" onclick="getBrowserInformation();">Get Browser Information</button>
+</body>
+</html>

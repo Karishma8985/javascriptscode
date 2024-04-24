@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var d = new Date();
+        switch(d.getDay()) {
+           case 0:
+           document.write("today is Sunday.");
+           document.write("<br>");
+           break;
+           case 1:
+           document.write("today is Monday.");
+           document.write("<br>");
+
+           break;
+           case 2:
+           document.write("today is Tuesday.");
+           document.write("<br>");
+
+           break;
+           case 3:
+           document.write("today is Wednesday.");
+           document.write("<br>");
+
+           break;
+           case 4:
+           document.write("today is Thursday.");
+           document.write("<br>");
+           
+           break;
+           case 5:
+           document.write("today is Friday.");
+           document.write("<br>");
+           
+           break;
+           case 6:
+           document.write("today is Saturday.");
+           document.write("<br>");
+           
+           break;
+           default:
+           document.write("No information available for that day.");
+           document.write("<br>");
+           
+           break;
+        } 
+    
+           var e = new Date();
+           switch(e.getDay()) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            document.write("It is a weekday.");
+            document.write("<br>");
+           
+            break;
+            case 0:
+            case 6:
+            document.write("it is a weekend day.");
+            document.write("<br>");
+           
+            break;
+            default:
+            document.write("Enjoy every day of your life");
+            document.write("<br>");
+           
+           }
+
+           var a = new Date();
+           switch(a.getDay()) {
+            default:
+            document.write("looking forward to the weekend.");
+           
+            document.write("<br>");
+            break;
+            case 6:
+            document.write("Today is saturday.");
+           
+            document.write("<br>");
+            break;
+            case 0:
+            document.write("Today is sunday");
+            document.write("<br>");
+
+           }
+        
+    </script>
+</body>
+</html>
